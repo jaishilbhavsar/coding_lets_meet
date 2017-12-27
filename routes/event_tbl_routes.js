@@ -36,7 +36,7 @@ router.post('/',function(req,res,next){
             res.json(err);
         }
         else{
-            res.json(rows);
+            res.json(req.body);
         }
     })
 });
@@ -50,7 +50,7 @@ router.put('/:id',function(req,res,next){
             res.json(err);
         }
         else{
-            res.json(rows);
+            res.json(req.body);
         }
     });
 });
