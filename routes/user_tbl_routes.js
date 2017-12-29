@@ -28,11 +28,6 @@ router.get('/:id?', function (req, res, next) {
     }
 });
 
-<<<<<<< HEAD
-=======
-
-router.post('/',function(req,res,next){
->>>>>>> 67c2407a977c91b8c495ce978d89e847d8a2c743
 
 router.post('/', function (req, res, next) {
 
