@@ -27,16 +27,6 @@ router.get('/:id?', function (req, res, next) {
         });
     }
 });
-<<<<<<< HEAD
-router.post('/',function(req,res,next){
-=======
-
-<<<<<<< HEAD
-=======
->>>>>>> e3c9341ad926d1f8f9f11c494372d8a10a1c1386
-
-router.post('/',function(req,res,next){
->>>>>>> 67c2407a977c91b8c495ce978d89e847d8a2c743
 
 router.post('/', function (req, res, next) {
 
@@ -52,9 +42,9 @@ router.post('/', function (req, res, next) {
 });
 
 
-router.put('/:id', function (req, res, next) {
+router.put('/', function (req, res, next) {
 
-    users.updateUser(req.params.id, req.body, function (err, rows) {
+    users.updateUser(req.body, function (err, rows) {
 
         if (err) {
             res.json(err);
