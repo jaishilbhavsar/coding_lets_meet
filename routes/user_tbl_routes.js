@@ -28,14 +28,6 @@ router.get('/:id?', function (req, res, next) {
     }
 });
 
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-=======
-
->>>>>>> 72d3c0b3533d93aa4bc7059012ce144975086d74
->>>>>>> f576e03cc4209d63f0be9e590ff84138f2b2e188
 router.post('/', function (req, res, next) {
 
     users.addUser(req.body, function (err, rows) {
