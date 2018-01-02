@@ -1,70 +1,64 @@
-var express=require('express');
-var router=express.Router();
-var posts=require('../models/post_model');
+var express = require('express');
+var router = express.Router();
+var posts = require('../models/post_model');
 
-router.get('/:id?',function(req,res,next){
+router.get('/:id?', function (req, res, next) {
 
-    if(req.params.id){
-        posts.getPostById(req.params.id,function(err,rows){
+    if (req.params.id) {
+        posts.getPostById(req.params.id, function (err, rows) {
 
-            if(err){
+            if (err) {
                 res.json(err);
-            }
-            else{
+            } else {
                 res.json(rows);
             }
         });
-    }
-    else{
-        posts.getAllPosts(function(err,rows){
+    } else {
+        posts.getAllPosts(function (err, rows) {
 
-            if(err){
+            if (err) {
                 res.json(err);
-            }
-            else{
+            } else {
                 res.json(rows);
             }
         });
     }
 });
 
-router.post('/',function(req,res,next){
+router.post('/', function (req, res, next) {
 
-    posts.addPost(req.body,function(err,rows){
+    posts.addPost(req.body, function (err, rows) {
 
-        if(err){
+        if (err) {
             res.json(err);
-        }
-        else{
-            res.json(rows);
+        } else {
+            res.json(req.body);
         }
     })
 });
 
-router.put('/:id',function(req,res,next){
+router.put('/:id', function (req, res, next) {
 
-    posts.updatePost(req.params.id,req.body,function(err,rows){
+    posts.updatePost(req.params.id, req.body, function (err, rows) {
 
-        if(err){
+        if (err) {
             res.json(err);
-        }
-        else{
+        } else {
             res.json(rows);
         }
     });
 });
 
-router.delete('/:id',function(req,res,next){
+router.delete('/:id', function (req, res, next) {
 
-    posts.deletePost(req.params.id,function(err,rows){
+    posts.deletePost(req.params.id, function (err, rows) {
 
-        if(err){
+        if (err) {
             res.json(err);
-        }
-        else{
+        } else {
             res.json(rows);
         }
     });
 });
 
-module.exports=router;
+module.exports = router;
