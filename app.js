@@ -22,6 +22,9 @@ var feedbacks = require('./routes/feedback_tbl_routes');
 var followers = require('./routes/follower_tbl_routes');
 var rsvps = require('./routes/rsvp_tbl_routes');
 var event_community = require('./routes/event_community_routes');
+var demomail = require('./routes/demomail');
+var comm_post = require('./routes/community_post_routes');
+var post_user = require('./routes/post_user_routes');
 var app = express();
 
 // view engine setup
@@ -56,6 +59,9 @@ app.use('/feedback', feedbacks);
 app.use('/follower', followers);
 app.use('/rsvp', rsvps);
 app.use('/eventCommunity', event_community);
+app.use('/demomail', demomail);
+app.use('/comm_post', comm_post);
+app.use('/post_user', post_user);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
