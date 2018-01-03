@@ -12,7 +12,7 @@ var comm_member={
         return db.query("select * from comm_member_tbl where join_id=?",[id],callback);
     },
     addCommunityMember:function(cmb,callback){
-        return db.query("insert into comm_member_tbl (fk_comm_id,fk_user_id) values(?,?)",[cmb.fk_comm_id,cmb.fk_user_id],callback);
+        return db.query("insert into comm_member_tbl (fk_user_id,fk_comm_id) values(?,?)",[cmb.fk_user_id,cmb.fk_comm_id],callback);
     },
     updateCommunityMember:function(id,cmb,callback){
         return db.query("update comm_member_tbl set fk_comm_id=?,fk_user_id=? where join_id=?",[cmb.fk_comm_id,cmb.fk_user_id,id],callback);
