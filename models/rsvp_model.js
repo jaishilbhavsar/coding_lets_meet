@@ -24,18 +24,23 @@ var rsvp = {
     },
 
     deleteRSVP: function (id, callback) {
-
         return db.query("delete from rsvp_tbl where RSVP_id=?", [id], callback);
     },
     getRSVPByEvent: function (id, callback) {
         return db.query("select * from rsvp_tbl where fk_event_id=?", [id], callback);
     },
     getRSVPCountByEvent: function (id, callback) {
-        return db.query("select count(*) from rsvp_tbl where fk_event_id=?", [id], callback);
+        return db.query("select count(*) as count from rsvp_tbl where fk_event_id=?", [id], callback);
     },
-    getRSVPofUserAndEvent: function (rs, callback) {
-        //return db.query("select * from rsvp_tbl where fk_user_id=? and fk_event_id=?", [fk_user_id, fk_event_id], callback);
-        return ("select * from rsvp_tbl where fk_user_id=? and fk_event_id=?", [rs.fk_user_id, rs.fk_event_id], callback);
+    // getRSVPofUserAndEvent: function (rs, callback) {
+    //return db.query("select * from rsvp_tbl where fk_user_id=? and fk_event_id=?", [fk_user_id, fk_event_id], callback);
+    //    return ("select RSVP_id from rsvp_tbl where fk_user_id=? and fk_event_id=?", [rs.fk_user_id, rs.fk_event_id], callback);
+    //}
+
+    getRSVPOfUserAndEvent(rs, callback) {
+        console.log(rs);
+        console.log(rs.fk_user_id);
+        return db.query("select RSVP_id from rsvp_tbl where fk_user_id=? and fk_event_id=?", [rs.fk_user_id, rs.fk_event_id], callback);
     }
 
 };

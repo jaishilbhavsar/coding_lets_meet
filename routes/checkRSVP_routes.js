@@ -16,12 +16,12 @@ var rsvp = require('../models/rsvp_model');
 };*/
 
 router.post('/', function (req, res, next) {
-    rsvp.getRSVPofUserAndEvent(req.body, function (err, rows) {
+    rsvp.getRSVPOfUserAndEvent(req.body, function (err, rows) {
         console.log(req.body);
+
         if (err) {
             res.json(err);
         } else {
-            
             res.json(rows);
         }
     });

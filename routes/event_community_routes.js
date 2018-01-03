@@ -15,7 +15,7 @@ router.get('/:id?', function (req, res, next) {
         });
     } else {
 
-        event_community.getEventsAndCommunity(function (err, rows) {
+        event_community.getUPCEventsAndCommunity(function (err, rows) {
             if (err) {
                 res.json(err);
             } else {

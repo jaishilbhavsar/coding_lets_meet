@@ -17,6 +17,7 @@ var polls = require('./routes/posts_tbl_routes');
 var categories = require('./routes/category_tbl_routes');
 var user = require('./routes/user_tbl_routes');
 var stories = require('./routes/story_tbl_routes');
+var comingEvents = require('./routes/upcomingEvents_routes');
 var events = require('./routes/event_tbl_routes');
 var feedbacks = require('./routes/feedback_tbl_routes');
 var followers = require('./routes/follower_tbl_routes');
@@ -25,7 +26,8 @@ var event_community = require('./routes/event_community_routes');
 var demomail = require('./routes/demomail');
 var comm_post = require('./routes/community_post_routes');
 var post_user = require('./routes/post_user_routes');
-var checkRSVP = require('./routes/checkRSVP_routes');
+var rsvpabc = require('./routes/checkRSVP_routes');
+var rsvpCount = require('./routes/countRSVP_routes');
 var app = express();
 
 // view engine setup
@@ -45,6 +47,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+
+app.use('/rsvpabc', rsvpabc);
+
+
 app.use('/community', communities);
 app.use('/post', posts);
 app.use('/like', likes);
@@ -63,7 +69,8 @@ app.use('/eventCommunity', event_community);
 app.use('/demomail', demomail);
 app.use('/comm_post', comm_post);
 app.use('/post_user', post_user);
-app.use('/checkRSVP', checkRSVP);
+app.use('/rsvpCount', rsvpCount);
+app.use('/comingEvent',comingEvents);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
