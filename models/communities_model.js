@@ -23,6 +23,7 @@ var community = {
     getPostsByCommunity: function (callback) {
         return db.query("select c.*,p.*,u.* from communities_tbl c,post_tbl p,user_tbl u where c.comm_id=p.fk_comm_id and u.user_id=p.fk_user_id", callback);
     }
+
 };
 
 module.exports = community;

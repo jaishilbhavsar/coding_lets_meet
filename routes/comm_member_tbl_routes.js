@@ -5,7 +5,7 @@ var comm_member=require('../models/comm_member_model');
 router.get('/:id?',function(req,res,next){
 
     if(req.params.id){
-        comm_member.getMemberById(req.params.id,function(err,rows){
+        comm_member.getMemberByCommunityId(req.params.id,function(err,rows){
 
             if(err){
                 res.json(err);
