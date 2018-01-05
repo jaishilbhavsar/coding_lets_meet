@@ -29,6 +29,7 @@ var comm_post = require('./routes/community_post_routes');
 var post_user = require('./routes/post_user_routes');
 var rsvpabc = require('./routes/checkRSVP_routes');
 var rsvpCount = require('./routes/countRSVP_routes');
+var follow_user=require('./routes/follow_user_routes');
 var app = express();
 
 // view engine setup
@@ -73,6 +74,7 @@ app.use('/comm_post', comm_post);
 app.use('/post_user', post_user);
 app.use('/rsvpCount', rsvpCount);
 app.use('/comingEvent',comingEvents);
+app.use('/follow_user',follow_user);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
