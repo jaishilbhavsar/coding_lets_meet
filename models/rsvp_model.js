@@ -15,12 +15,12 @@ var rsvp = {
 
     insertRSVP: function (r, callback) {
 
-        return db.query("insert into rsvp_tbl(fk_user_id,fk_event_id) values(?,?)", [r.fk_user_id, r.fk_event_id], callback);
+        return db.query("insert into rsvp_tbl(rsvp_fk_user_id,fk_event_id) values(?,?)", [r.rsvp_fk_user_id, r.fk_event_id], callback);
     },
 
     updateRSVP: function (id, r, callback) {
 
-        return db.query("update rsvp_tbl set fk_user_id=? fk_event_id=? where RSVP_id=?", [r.fk_user_id, r.fk_event_id, id], callback);
+        return db.query("update rsvp_tbl set rsvp_fk_user_id=? fk_event_id=? where RSVP_id=?", [r.rsvp_fk_user_id, r.fk_event_id, id], callback);
     },
 
     deleteRSVP: function (id, callback) {
