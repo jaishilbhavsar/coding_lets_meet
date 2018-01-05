@@ -29,6 +29,8 @@ var comm_post = require('./routes/community_post_routes');
 var post_user = require('./routes/post_user_routes');
 var rsvpabc = require('./routes/checkRSVP_routes');
 var rsvpCount = require('./routes/countRSVP_routes');
+var com_members = require('./routes/community_comm_member_routes');
+var membercount = require('./routes/countMembers');
 var eventRegistered = require('./routes/event_rsvp_route');
 var follow_user=require('./routes/follow_user_routes');
 var app = express();
@@ -53,7 +55,8 @@ app.use('/users', users);
 
 app.use('/rsvpabc', rsvpabc);
 
-
+app.use('/membercount', membercount);
+app.use('/comm_mem_id',com_members);
 app.use('/community', communities);
 app.use('/post', posts);
 app.use('/like', likes);
