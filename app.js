@@ -29,11 +29,8 @@ var comm_post = require('./routes/community_post_routes');
 var post_user = require('./routes/post_user_routes');
 var rsvpabc = require('./routes/checkRSVP_routes');
 var rsvpCount = require('./routes/countRSVP_routes');
-<<<<<<< HEAD
-var follow_user=require('./routes/follow_user_routes');
-=======
 var eventRegistered = require('./routes/event_rsvp_route');
->>>>>>> 5b52b5c8195200065f4cfc43bfebf0fb034f5c18
+var follow_user=require('./routes/follow_user_routes');
 var app = express();
 
 // view engine setup
@@ -77,13 +74,9 @@ app.use('/demomail', demomail);
 app.use('/comm_post', comm_post);
 app.use('/post_user', post_user);
 app.use('/rsvpCount', rsvpCount);
-<<<<<<< HEAD
-app.use('/comingEvent',comingEvents);
-app.use('/follow_user',follow_user);
-=======
 app.use('/comingEvent', comingEvents);
 app.use('/event_reg', eventRegistered);
->>>>>>> 5b52b5c8195200065f4cfc43bfebf0fb034f5c18
+app.use('/follow_user',follow_user);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
