@@ -22,6 +22,9 @@ var comm_member = {
     },
     getCountByCommunity: function (id, callback) {
         return db.query("select count(*) as count from comm_member_tbl where fk_comm_id=?", [id], callback);
+    },
+    checkMembers: function (comm_mem, callback) {
+        return db.query("select * from comm_member_tbl where fk_user_id=? and fk_comm_id=?", [comm_mem.fk_user_id, comm_mem.fk_comm_id], callback);
     }
 };
 

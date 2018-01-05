@@ -31,8 +31,10 @@ var rsvpabc = require('./routes/checkRSVP_routes');
 var rsvpCount = require('./routes/countRSVP_routes');
 var com_members = require('./routes/community_comm_member_routes');
 var membercount = require('./routes/countMembers');
+var checkCommMember = require('./routes/checkMember_routes');
 var eventRegistered = require('./routes/event_rsvp_route');
-var follow_user=require('./routes/follow_user_routes');
+var follow_user = require('./routes/follow_user_routes');
+var com_post = require('./routes/comment_post_routes');
 var app = express();
 
 // view engine setup
@@ -56,7 +58,7 @@ app.use('/users', users);
 app.use('/rsvpabc', rsvpabc);
 
 app.use('/membercount', membercount);
-app.use('/comm_mem_id',com_members);
+app.use('/comm_mem_id', com_members);
 app.use('/community', communities);
 app.use('/post', posts);
 app.use('/like', likes);
@@ -79,7 +81,9 @@ app.use('/post_user', post_user);
 app.use('/rsvpCount', rsvpCount);
 app.use('/comingEvent', comingEvents);
 app.use('/event_reg', eventRegistered);
-app.use('/follow_user',follow_user);
+app.use('/follow_user', follow_user);
+app.use('/checkMember', checkCommMember);
+app.use('/com_post', com_post);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

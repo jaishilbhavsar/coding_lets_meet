@@ -18,10 +18,10 @@ var community = {
         return db.query("delete from communities_tbl where comm_id=?", [id], callback);
     },
     getPostsByCommunityId: function (id, callback) {
-        return db.query("select c.*,p.*,u.* from communities_tbl c,post_tbl p,user_tbl u where c.comm_id=p.fk_comm_id and u.user_id=p.fk_user_id and c.comm_id=?", [id], callback);
+        return db.query("select c.*,p.*,u.* from communities_tbl c,post_tbl p,user_tbl u where c.comm_id=p.fk_comm_id and u.user_id=p.post_fk_user_id and c.comm_id=?", [id], callback);
     },
     getPostsByCommunity: function (callback) {
-        return db.query("select c.*,p.*,u.* from communities_tbl c,post_tbl p,user_tbl u where c.comm_id=p.fk_comm_id and u.user_id=p.fk_user_id", callback);
+        return db.query("select c.*,p.*,u.* from communities_tbl c,post_tbl p,user_tbl u where c.comm_id=p.fk_comm_id and u.user_id=p.post_fk_user_id", callback);
     }
 
 };
