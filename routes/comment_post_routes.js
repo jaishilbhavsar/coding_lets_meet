@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var members = require('../models/comm_member_model')
+var comm_post = require('../models/comment_model');
 
 router.get('/:id', function (req, res, next) {
 
-    members.getCountByCommunity(req.params.id, function (err, rows) {
+    comm_post.getCommentsByPost(req.params.id, function (err, rows) {
 
         if (err) {
             res.json(err);
@@ -12,7 +12,6 @@ router.get('/:id', function (req, res, next) {
             res.json(rows);
         }
     });
-
 });
 
 module.exports = router;
