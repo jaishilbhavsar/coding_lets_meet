@@ -1,71 +1,65 @@
-var express=require('express');
-var router=express.Router();
-var comments=require('../models/comment_model');
+var express = require('express');
+var router = express.Router();
+var comments = require('../models/comment_model');
 
-router.get('/:id?',function(req,res,next){
+router.get('/:id?', function (req, res, next) {
 
-    if(req.params.id){
-        comments.getCommentById(req.params.id,function(err,rows){
+    if (req.params.id) {
+        comments.getCommentById(req.params.id, function (err, rows) {
 
-            if(err){
+            if (err) {
                 res.json(err);
-            }
-            else{
+            } else {
                 res.json(rows);
             }
         });
-    }
-    else{
-        comments.getAllComments(function(err,rows){
+    } else {
+        comments.getAllComments(function (err, rows) {
 
-            if(err){
+            if (err) {
                 res.json(err);
-            }
-            else{
+            } else {
                 res.json(rows);
             }
         });
     }
 });
 
-router.post('/',function(req,res,next){
+router.post('/', function (req, res, next) {
 
-    comments.addComment(req.body,function(err,rows){
+    comments.addComment(req.body, function (err, rows) {
 
-        if(err){
+        if (err) {
             res.json(err);
-        }
-        else{
-            res.json(rows);
+        } else {
+            res.json(req.body);
         }
     })
 });
 
 
-router.put('/:id',function(req,res,next){
+router.put('/:id', function (req, res, next) {
 
-    comments.updateComment(req.params.id,req.body,function(err,rows){
+    comments.updateComment(req.params.id, req.body, function (err, rows) {
 
-        if(err){
+        if (err) {
             res.json(err);
-        }
-        else{
+        } else {
             res.json(rows);
         }
     });
 });
 
-router.delete('/:id',function(req,res,next){
+router.delete('/:id', function (req, res, next) {
 
-    comments.deleteComment(req.params.id,function(err,rows){
+    comments.deleteComment(req.params.id, function (err, rows) {
 
-        if(err){
+        if (err) {
             res.json(err);
-        }
-        else{
+        } else {
             res.json(rows);
         }
     });
 });
 
-module.exports=router;
+module.exports = router;
