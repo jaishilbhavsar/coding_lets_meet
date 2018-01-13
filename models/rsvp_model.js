@@ -40,7 +40,7 @@ var rsvp = {
     getRSVPOfUserAndEvent(rs, callback) {
         console.log(rs);
         console.log(rs.fk_user_id);
-        return db.query("select RSVP_id from rsvp_tbl where fk_user_id=? and fk_event_id=?", [rs.fk_user_id, rs.fk_event_id], callback);
+        return db.query("select * from rsvp_tbl where rsvp_fk_user_id=? and fk_event_id=?", [rs.rsvp_fk_user_id, rs.fk_event_id], callback);
     }
 
 };
