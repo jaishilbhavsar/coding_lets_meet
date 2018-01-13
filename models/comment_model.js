@@ -9,7 +9,8 @@ var comment = {
         return db.query("select * from comment_tbl where com_id=?", [id], callback);
     },
     addComment: function (cm, callback) {
-        return db.query("insert into comment_tbl (com_date,com_des,fk_post,id,com_fk_user_id) values(?,?,?,?)", [cm.com_date, cm.com_des, cm.fk_post_id, cm.com_fk_user_id], callback);
+        console.log(cm);
+        return db.query("insert into comment_tbl (com_id,com_date,com_des,fk_post_id,com_fk_user_id) values(?,?,?,?,?)", [null,cm.com_date, cm.com_des, cm.fk_post_id, cm.com_fk_user_id], callback);
     },
     updateComment: function (id, cm, callback) {
         return db.query("update comment_tbl set com_date=?,com_des=? where com_id=?", [cm.com_date, cm.com_des, id], callback);

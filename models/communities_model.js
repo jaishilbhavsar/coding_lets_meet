@@ -22,6 +22,9 @@ var community = {
     },
     getPostsByCommunity: function (callback) {
         return db.query("select c.*,p.*,u.* from communities_tbl c,post_tbl p,user_tbl u where c.comm_id=p.fk_comm_id and u.user_id=p.post_fk_user_id", callback);
+    },
+    getTopCommunity:function(callback){
+        return db.query("select * from communities_tbl where comm_rating>=3",callback);
     }
 
 };

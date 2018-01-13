@@ -36,6 +36,7 @@ var eventRegistered = require('./routes/event_rsvp_route');
 var follow_user = require('./routes/follow_user_routes');
 var com_post = require('./routes/comment_post_routes');
 var allmembers = require('./routes/all_com_membr_routes');
+var topcommunity=require('./routes/topCommunities_routes');
 var app = express();
 
 // view engine setup
@@ -55,7 +56,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-
+app.use('/topcommunity',topcommunity);
 app.use('/rsvpabc', rsvpabc);
 app.use('/allmember',allmembers);
 app.use('/membercount', membercount);
