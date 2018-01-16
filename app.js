@@ -36,7 +36,8 @@ var eventRegistered = require('./routes/event_rsvp_route');
 var follow_user = require('./routes/follow_user_routes');
 var com_post = require('./routes/comment_post_routes');
 var allmembers = require('./routes/all_com_membr_routes');
-var topcommunity=require('./routes/topCommunities_routes');
+var topcommunity = require('./routes/topCommunities_routes');
+var likeByPosts = require('./routes/like_post_user_routes');
 var app = express();
 
 // view engine setup
@@ -56,9 +57,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/topcommunity',topcommunity);
+app.use('/topcommunity', topcommunity);
 app.use('/rsvpabc', rsvpabc);
-app.use('/allmember',allmembers);
+app.use('/allmember', allmembers);
 app.use('/membercount', membercount);
 app.use('/comm_mem_id', com_members);
 app.use('/community', communities);
@@ -86,6 +87,7 @@ app.use('/event_reg', eventRegistered);
 app.use('/follow_user', follow_user);
 app.use('/checkMember', checkCommMember);
 app.use('/com_post', com_post);
+app.use('/likebypost', likeByPosts);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
