@@ -20,6 +20,7 @@ var stories = require('./routes/story_tbl_routes');
 var comingEvents = require('./routes/upcomingEvents_routes');
 var events = require('./routes/event_tbl_routes');
 var feedbacks = require('./routes/feedback_tbl_routes');
+var feedbackByEvent = require('./routes/feedbackByEvent_routes');
 var followers = require('./routes/follower_tbl_routes');
 var following = require('./routes/following_routes');
 var rsvps = require('./routes/rsvp_tbl_routes');
@@ -38,6 +39,7 @@ var com_post = require('./routes/comment_post_routes');
 var allmembers = require('./routes/all_com_membr_routes');
 var topcommunity = require('./routes/topCommunities_routes');
 var likeByPosts = require('./routes/like_post_user_routes');
+
 var app = express();
 
 // view engine setup
@@ -74,6 +76,7 @@ app.use('/login', u);
 app.use('/story', stories);
 app.use('/event', events);
 app.use('/feedback', feedbacks);
+app.use('/feedbackByEvent', feedbackByEvent);
 app.use('/follower', followers);
 app.use('/following', following);
 app.use('/rsvp', rsvps);
