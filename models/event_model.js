@@ -25,6 +25,9 @@ var Event = {
     eventRegisteredRsvp: function (user_id, callback) {
         //SELECT DISTINCT e.*,r.*,c.* from event_tbl e,rsvp_tbl r,communities_tbl c WHERE c.comm_id=e.fk_comm_id AND e.event_id=r.fk_event_id and NOT r.rsvp_fk_user_id='zeel91297@gmail.com'
         return db.query("select e.*,r.*,c.* from event_tbl e,rsvp_tbl r,communities_tbl c where r.fk_event_id=e.event_id and c.comm_id=e.fk_comm_id and r.rsvp_fk_user_id=? and e.event_date > CURDATE() ", [user_id], callback);
+    },
+    getAllUpcNotReg: function (user_id, callback) {
+        return db.query("SELECT e.*,r.*,c.* from event_tbl e,rsvp_tbl r,communities_tbl c where e.event_id=r.fk_event_id AND e.fk_comm_id=c.comm_id AND r.rsvp_fk_user_id!=?", [user_id], callback);
     }
 
 };

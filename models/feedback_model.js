@@ -9,10 +9,10 @@ var feedback = {
         return db.query("select * from feedback_tbl where feed_id=?", [id], callback);
     },
     addFeedback: function (f, callback) {
-        return db.query("insert into feedback_tbl values(?,?,?,?)", [null, f.feed_des, f.feed_fk_event_id, f.feed_fk_user_id], callback);
+        return db.query("insert into feedback_tbl values(?,?,?,?,CURRENT_DATE)", [null, f.feed_des, f.feed_fk_event_id, f.feed_fk_user_id], callback);
     },
     updateFeedback: function (id, f, callback) {
-        return db.query("update feedback_tbl set feed_des=?,fk_event_id=?,fk_user_id=? where feed_id=?", [f.feed_des, f.fk_event_id, f.fk_user_id, id], callback);
+        return db.query("update feedback_tbl set feed_des=? where feed_id=?", [f.feed_des, id], callback);
     },
     deleteFeedback: function (id, callback) {
         return db.query("delete from feedback_tbl where feed_id=?", [id], callback);
