@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var multer = require('multer');
+var path = require('path');
 var posts = require('../models/post_model');
 
 router.get('/:id?', function (req, res, next) {
@@ -25,7 +27,7 @@ router.get('/:id?', function (req, res, next) {
     }
 });
 
-router.post('/', function (req, res, next) {
+/*router.post('/', function (req, res, next) {
 
     posts.addPost(req.body, function (err, rows) {
 
@@ -35,6 +37,29 @@ router.post('/', function (req, res, next) {
             res.json(req.body);
         }
     })
+});*/
+
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/images/posts')
+    },
+    filename: (req, file, cb) => {
+        cb(null, 'post' + '-' + Date.now() + path.extname(file.originalname))
+    }
+});
+
+var upload = multer({
+    storage: storage
+});
+
+router.post('/', upload.single('image'), (req, res, next) => {
+    posts.addPost(req.body, req.file.filename, function (err, rows) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(req.body);
+        }
+    });
 });
 
 router.put('/:id', function (req, res, next) {
