@@ -38,6 +38,7 @@ var eventNotReg = require('./routes/eventNotReg_routes');
 var follow_user = require('./routes/follow_user_routes');
 var com_post = require('./routes/comment_post_routes');
 var allmembers = require('./routes/all_com_membr_routes');
+var memberlist = require('./routes/memberAddList_routes');
 var topcommunity = require('./routes/topCommunities_routes');
 var likeByPosts = require('./routes/like_post_user_routes');
 
@@ -91,6 +92,7 @@ app.use('/event_reg', eventRegistered);
 app.use('/eventNotReg', eventNotReg);
 app.use('/follow_user', follow_user);
 app.use('/checkMember', checkCommMember);
+app.use('/memberList', memberlist);
 app.use('/com_post', com_post);
 app.use('/likebypost', likeByPosts);
 
