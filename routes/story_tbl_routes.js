@@ -16,7 +16,7 @@ router.get('/:id?',function(req,res,next){
         });
     }
     else{
-        stories.getAllStores(function(err,rows){
+        stories.getAllStories(function(err,rows){
 
             if(err){
                 res.json(err);
