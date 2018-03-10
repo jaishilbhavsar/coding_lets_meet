@@ -27,18 +27,6 @@ router.get('/:id?', function (req, res, next) {
     }
 });
 
-/*router.post('/', function (req, res, next) {
-
-    posts.addPost(req.body, function (err, rows) {
-
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(req.body);
-        }
-    })
-});*/
-
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'public/images/posts')
@@ -62,21 +50,9 @@ router.post('/', upload.single('image'), (req, res, next) => {
     });
 });
 
-router.put('/:id', function (req, res, next) {
+router.put('/', function (req, res, next) {
 
-    posts.updatePost(req.params.id, req.body, function (err, rows) {
-
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(rows);
-        }
-    });
-});
-
-router.delete('/:id', function (req, res, next) {
-
-    posts.deletePost(req.params.id, function (err, rows) {
+    posts.updatePost(req.body, function (err, rows) {
 
         if (err) {
             res.json(err);
@@ -85,5 +61,17 @@ router.delete('/:id', function (req, res, next) {
         }
     });
 });
+
+/*router.delete('/', function (req, res, next) {
+
+    posts.deletePost(req.body, function (err, rows) {
+
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(rows);
+        }
+    });
+});*/
 
 module.exports = router;
