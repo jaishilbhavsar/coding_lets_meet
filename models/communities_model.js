@@ -3,7 +3,7 @@ var db = require('../dbconnection');
 var community = {
 
     getAlCommunities: function (callback) {
-        return db.query("select * from communities_tbl", callback);
+        return db.query("select * from communities_tbl comm,user_tbl u where comm.created_by=u.user_id", callback);
     },
     getCommunityById: function (id, callback) {
         return db.query("select * from communities_tbl where comm_id=?", [id], callback);
