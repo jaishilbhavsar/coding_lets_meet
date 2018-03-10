@@ -9,7 +9,10 @@ var community = {
         return db.query("select * from communities_tbl where comm_id=?", [id], callback);
     },
     addCommunity: function (comm, filename, callback) {
-        return db.query("insert into communities_tbl values(?,?,?,?,CURRENT_DATE,0,?,?)", [null, comm.comm_name, comm.comm_des, filename, comm.comm_date, comm.comm_rating, comm.created_by, comm.comm_fk_cat_id], callback);
+        //var cur_date = Date.now();
+        //console.log(cur_date);
+        console.log("hello");
+        return db.query("insert into communities_tbl (comm_id,comm_name,comm_des,comm_pic,comm_date,comm_rating,created_by,comm_fk_cat_id) values(?,?,?,?,CURRENT_DATE,?,?,?)", [null, comm.comm_name, comm.comm_des, filename , 0, comm.created_by, comm.comm_fk_cat_id], callback);
     },
     updateCommunity: function (id, comm, callback) {
         return db.query("update communities_tbl set comm_name=?,comm_des=?,comm_pic=?,comm_date=?,comm_rating=? where comm_id=?", [comm.comm_name, comm.comm_des, comm.comm_pic, comm.comm_date, comm.comm_rating, id], callback);

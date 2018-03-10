@@ -56,6 +56,7 @@ router.post('/', upload.single('image'), function (req, res, next) {
 
     console.log(req.body);
     console.log(req.file.filename);
+
     community.addCommunity(req.body, req.file.filename, function (err, rows) {
         if (err) {
             res.json(err);

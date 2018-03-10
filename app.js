@@ -41,7 +41,11 @@ var allmembers = require('./routes/all_com_membr_routes');
 var memberlist = require('./routes/memberAddList_routes');
 var topcommunity = require('./routes/topCommunities_routes');
 var likeByPosts = require('./routes/like_post_user_routes');
+<<<<<<< HEAD
 var ratings = require('./routes/ratings_tbl_routes');
+=======
+var deletePost = require('./routes/delete_post_route');
+>>>>>>> 8b6ec32efd233801d62fdb0d0e78bd24ba9c32ff
 
 var app = express();
 
@@ -96,7 +100,11 @@ app.use('/checkMember', checkCommMember);
 app.use('/memberList', memberlist);
 app.use('/com_post', com_post);
 app.use('/likebypost', likeByPosts);
+<<<<<<< HEAD
 app.use('/rating',ratings);
+=======
+app.use('/deletePost', deletePost);
+>>>>>>> 8b6ec32efd233801d62fdb0d0e78bd24ba9c32ff
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
