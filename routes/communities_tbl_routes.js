@@ -1,34 +1,33 @@
-var express=require('express');
-var router=express.Router();
-var community=require('../models/communities_model');
+var express = require('express');
+var router = express.Router();
+var multer = require('multer');
+var path = require('path');
+var community = require('../models/communities_model');
 
-router.get('/:id?',function(req,res,next){
+router.get('/:id?', function (req, res, next) {
 
-    if(req.params.id){
-        community.getCommunityById(req.params.id,function(err,rows){
+    if (req.params.id) {
+        community.getCommunityById(req.params.id, function (err, rows) {
 
-            if(err){
+            if (err) {
                 res.json(err);
-            }
-            else{
+            } else {
                 res.json(rows);
             }
         });
-    }
-    else{
-        community.getAlCommunities(function(err,rows){
+    } else {
+        community.getAlCommunities(function (err, rows) {
 
-            if(err){
+            if (err) {
                 res.json(err);
-            }
-            else{
+            } else {
                 res.json(rows);
             }
         });
     }
 });
 
-router.post('/',function(req,res,next){
+/*router.post('/',function(req,res,next){
 
     community.addCommunity(req.body,function(err,rows){
 
@@ -39,32 +38,56 @@ router.post('/',function(req,res,next){
             res.json(rows);
         }
     })
+});*/
+
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/images/communities')
+    },
+    filename: (req, file, cb) => {
+        cb(null, 'community' + '-' + Date.now() + path.extname(file.originalname))
+    }
+});
+var upload = multer({
+    storage: storage
 });
 
-router.put('/:id',function(req,res,next){
+router.post('/', upload.single('image'), function (req, res, next) {
 
-    community.updateCommunity(req.params.id,req.body,function(err,rows){
+    console.log(req.body);
+    console.log(req.file.filename);
 
-        if(err){
+    community.addCommunity(req.body, req.file.filename, function (err, rows) {
+        if (err) {
             res.json(err);
+        } else {
+            res.json(req.body);
         }
-        else{
+    })
+});
+
+router.put('/:id', function (req, res, next) {
+
+    community.updateCommunity(req.params.id, req.body, function (err, rows) {
+
+        if (err) {
+            res.json(err);
+        } else {
             res.json(rows);
         }
     });
 });
 
-router.delete('/:id',function(req,res,next){
+router.delete('/:id', function (req, res, next) {
 
-    community.deleteCommunity(req.params.id,function(err,rows){
+    community.deleteCommunity(req.params.id, function (err, rows) {
 
-        if(err){
+        if (err) {
             res.json(err);
-        }
-        else{
+        } else {
             res.json(rows);
         }
     });
 });
 
-module.exports=router;
+module.exports = router;

@@ -20,6 +20,7 @@ var stories = require('./routes/story_tbl_routes');
 var comingEvents = require('./routes/upcomingEvents_routes');
 var events = require('./routes/event_tbl_routes');
 var feedbacks = require('./routes/feedback_tbl_routes');
+var feedbackByEvent = require('./routes/feedbackByEvent_routes');
 var followers = require('./routes/follower_tbl_routes');
 var following = require('./routes/following_routes');
 var rsvps = require('./routes/rsvp_tbl_routes');
@@ -33,9 +34,16 @@ var com_members = require('./routes/community_comm_member_routes');
 var membercount = require('./routes/countMembers');
 var checkCommMember = require('./routes/checkMember_routes');
 var eventRegistered = require('./routes/event_rsvp_route');
+var eventNotReg = require('./routes/eventNotReg_routes');
 var follow_user = require('./routes/follow_user_routes');
 var com_post = require('./routes/comment_post_routes');
 var allmembers = require('./routes/all_com_membr_routes');
+var memberlist = require('./routes/memberAddList_routes');
+var topcommunity = require('./routes/topCommunities_routes');
+var likeByPosts = require('./routes/like_post_user_routes');
+var ratings = require('./routes/ratings_tbl_routes');
+var deletePost = require('./routes/delete_post_route');
+
 var app = express();
 
 // view engine setup
@@ -55,9 +63,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-
+app.use('/topcommunity', topcommunity);
 app.use('/rsvpabc', rsvpabc);
-app.use('/allmember',allmembers);
+app.use('/allmember', allmembers);
 app.use('/membercount', membercount);
 app.use('/comm_mem_id', com_members);
 app.use('/community', communities);
@@ -72,6 +80,7 @@ app.use('/login', u);
 app.use('/story', stories);
 app.use('/event', events);
 app.use('/feedback', feedbacks);
+app.use('/feedbackByEvent', feedbackByEvent);
 app.use('/follower', followers);
 app.use('/following', following);
 app.use('/rsvp', rsvps);
@@ -82,9 +91,14 @@ app.use('/post_user', post_user);
 app.use('/rsvpCount', rsvpCount);
 app.use('/comingEvent', comingEvents);
 app.use('/event_reg', eventRegistered);
+app.use('/eventNotReg', eventNotReg);
 app.use('/follow_user', follow_user);
 app.use('/checkMember', checkCommMember);
+app.use('/memberList', memberlist);
 app.use('/com_post', com_post);
+app.use('/likebypost', likeByPosts);
+app.use('/rating',ratings);
+app.use('/deletePost', deletePost);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

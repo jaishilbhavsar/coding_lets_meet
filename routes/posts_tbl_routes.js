@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var multer = require('multer');
+var path = require('path');
 var posts = require('../models/post_model');
 
 router.get('/:id?', function (req, res, next) {
@@ -25,21 +27,32 @@ router.get('/:id?', function (req, res, next) {
     }
 });
 
-router.post('/', function (req, res, next) {
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/images/posts')
+    },
+    filename: (req, file, cb) => {
+        cb(null, 'post' + '-' + Date.now() + path.extname(file.originalname))
+    }
+});
 
-    posts.addPost(req.body, function (err, rows) {
+var upload = multer({
+    storage: storage
+});
 
+router.post('/', upload.single('image'), (req, res, next) => {
+    posts.addPost(req.body, req.file.filename, function (err, rows) {
         if (err) {
             res.json(err);
         } else {
             res.json(req.body);
         }
-    })
+    });
 });
 
-router.put('/:id', function (req, res, next) {
+router.put('/', function (req, res, next) {
 
-    posts.updatePost(req.params.id, req.body, function (err, rows) {
+    posts.updatePost(req.body, function (err, rows) {
 
         if (err) {
             res.json(err);
@@ -49,9 +62,9 @@ router.put('/:id', function (req, res, next) {
     });
 });
 
-router.delete('/:id', function (req, res, next) {
+/*router.delete('/', function (req, res, next) {
 
-    posts.deletePost(req.params.id, function (err, rows) {
+    posts.deletePost(req.body, function (err, rows) {
 
         if (err) {
             res.json(err);
@@ -59,6 +72,6 @@ router.delete('/:id', function (req, res, next) {
             res.json(rows);
         }
     });
-});
+});*/
 
 module.exports = router;

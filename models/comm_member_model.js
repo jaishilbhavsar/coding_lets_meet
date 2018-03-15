@@ -25,6 +25,9 @@ var comm_member = {
     },
     checkMembers: function (comm_mem, callback) {
         return db.query("select * from comm_member_tbl where fk_user_id=? and fk_comm_id=?", [comm_mem.fk_user_id, comm_mem.fk_comm_id], callback);
+    },
+    getOtherMembers(comm_id, user_id, callback) {
+        return db.query("select u.* from comm_member_tbl cm,communities_tbl c, user_tbl u WHERE u.user_id!=cm.fk_user_id AND c.comm_id=cm.fk_comm_id and c.comm_id=? and u.user_id!=?", [comm_id, user_id], callback);
     }
 };
 

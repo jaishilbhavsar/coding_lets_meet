@@ -30,7 +30,7 @@ var rsvp = {
         return db.query("select * from rsvp_tbl where fk_event_id=?", [id], callback);
     },
     getRSVPCountByEvent: function (id, callback) {
-        return db.query("select count(*) as count from rsvp_tbl where fk_event_id=?", [id], callback);
+        return db.query("SELECT e.*,u.*,r.* FROM event_tbl e,user_tbl u,rsvp_tbl r WHERE e.event_id=r.fk_event_id AND r.rsvp_fk_user_id=u.user_id and e.event_id=?", [id], callback);
     },
     // getRSVPofUserAndEvent: function (rs, callback) {
     //return db.query("select * from rsvp_tbl where fk_user_id=? and fk_event_id=?", [fk_user_id, fk_event_id], callback);
@@ -40,7 +40,7 @@ var rsvp = {
     getRSVPOfUserAndEvent(rs, callback) {
         console.log(rs);
         console.log(rs.fk_user_id);
-        return db.query("select RSVP_id from rsvp_tbl where fk_user_id=? and fk_event_id=?", [rs.fk_user_id, rs.fk_event_id], callback);
+        return db.query("select * from rsvp_tbl where rsvp_fk_user_id=? and fk_event_id=?", [rs.rsvp_fk_user_id, rs.fk_event_id], callback);
     }
 
 };
