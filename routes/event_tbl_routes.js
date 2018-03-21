@@ -45,6 +45,8 @@ var storage = multer.diskStorage({
         cb(null, 'public/images/events')
     },
     filename: (req, file, cb) => {
+        console.log(file.fieldname);
+        console.log(Date.now());
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
     }
 });
@@ -65,9 +67,11 @@ router.post('/', upload.single('image'), (req, res, next) => {
     });
 })
 
-router.put('/:id', function (req, res, next) {
 
-    events.updateEvent(req.params.id, req.body, function (err, rows) {
+router.put('/:id', upload.single('image'), function (req, res, next) {
+
+    console.log(req.body);
+    events.updateEvent(req.params.id, req.body, req.file.filename, function (err, rows) {
 
         if (err) {
             res.json(err);
