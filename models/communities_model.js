@@ -6,7 +6,7 @@ var community = {
         return db.query("select * from communities_tbl comm,user_tbl u where comm.created_by=u.user_id", callback);
     },
     getCommunityById: function (id, callback) {
-        return db.query("select * from communities_tbl where comm_id=?", [id], callback);
+        return db.query("select * from communities_tbl c,user_tbl u where c.created_by=u.user_id and comm_id=?", [id], callback);
     },
     addCommunity: function (comm, filename, callback) {
         //var cur_date = Date.now();
