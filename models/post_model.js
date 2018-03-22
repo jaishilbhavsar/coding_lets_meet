@@ -12,14 +12,32 @@ var post = {
     addPost: function (ps, filename, callback) {
         return db.query("insert into post_tbl values(?,?,?,?,CURRENT_DATE,?,?)", [null, ps.post_title, ps.post_des, filename, ps.post_fk_user_id, ps.fk_comm_id], callback);
     },
-    updatePost: function (ps, callback) {
-        return db.query("update post_tbl set post_title=?,post_des=?,post_pic=? where post_id=?", [ps.post_title, ps.post_des, ps.post_pic, ps.post_id], callback);
+    updatePost: function (ps, filename, callback) {
+        var post = db.query("select * from post_tbl where post_id=?", [ps.post_id]);
+        post.on('result', function (row) {
+            console.log(row.post_pic);
+            if (row.post_pic != '') {
+                var path = 'public/images/posts/' + row.post_pic;
+                console.log(path);
+                fs.unlink(path, function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    console.log('Deleted successfuly');
+                });
+            }
+        });
+        return db.query("update post_tbl set post_title=?,post_des=?,post_pic=? where post_id=?", [ps.post_title, ps.post_des, filename, ps.post_id], callback);
+    },
+    updatePostOnly: function (ps, callback) {
+        return db.query("update post_tbl set post_title=?,post_des=? where post_id=?", [ps.post_title, ps.post_des, ps.post_id], callback);
     },
     deletePost: function (post, callback) {
         console.log(post);
         console.log(post.post_pic);
         if (post.post_pic != '') {
-            var path = '../public/images/posts/' + post.post_pic;
+            var path = 'public/images/posts/' + post.post_pic;
+            console.log(path);
             fs.unlink(path, function (err) {
                 if (err) {
                     console.log(err);

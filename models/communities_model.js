@@ -12,12 +12,26 @@ var community = {
         //var cur_date = Date.now();
         //console.log(cur_date);
         console.log("hello");
-        return db.query("insert into communities_tbl (comm_id,comm_name,comm_des,comm_pic,comm_date,comm_rating,created_by,comm_fk_cat_id) values(?,?,?,?,CURRENT_DATE,?,?,?)", [null, comm.comm_name, comm.comm_des, filename , 0, comm.created_by, comm.comm_fk_cat_id], callback);
+        return db.query("insert into communities_tbl (comm_id,comm_name,comm_des,comm_pic,comm_date,comm_rating,created_by,comm_fk_cat_id) values(?,?,?,?,CURRENT_DATE,?,?,?)", [null, comm.comm_name, comm.comm_des, filename, 0, comm.created_by, comm.comm_fk_cat_id], callback);
     },
     updateCommunity: function (id, comm, callback) {
         return db.query("update communities_tbl set comm_name=?,comm_des=?,comm_pic=?,comm_date=?,comm_rating=? where comm_id=?", [comm.comm_name, comm.comm_des, comm.comm_pic, comm.comm_date, comm.comm_rating, id], callback);
     },
     deleteCommunity: function (id, callback) {
+        var comm = db.query("select * from community_tbl where comm_id=?", [id]);
+        comm.on('result', function (row) {
+            console.log(row.comm_pic);
+            if (row.comm_pic != '') {
+                var path = 'public/images/communities/' + row.comm_pic;
+                console.log(path);
+                fs.unlink(path, function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    console.log('Deleted successfuly');
+                });
+            }
+        });
         return db.query("delete from communities_tbl where comm_id=?", [id], callback);
     },
     getPostsByCommunityId: function (id, callback) {

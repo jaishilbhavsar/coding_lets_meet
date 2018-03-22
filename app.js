@@ -36,7 +36,7 @@ var checkCommMember = require('./routes/checkMember_routes');
 var eventRegistered = require('./routes/event_rsvp_route');
 var eventNotReg = require('./routes/eventNotReg_routes');
 var follow_user = require('./routes/follow_user_routes');
-var follow=require('./routes/follow_routes');
+var follow = require('./routes/follow_routes');
 var com_post = require('./routes/comment_post_routes');
 var allmembers = require('./routes/all_com_membr_routes');
 var memberlist = require('./routes/memberAddList_routes');
@@ -44,6 +44,7 @@ var topcommunity = require('./routes/topCommunities_routes');
 var likeByPosts = require('./routes/like_post_user_routes');
 var ratings = require('./routes/ratings_tbl_routes');
 var deletePost = require('./routes/delete_post_route');
+var updatePostOnly = require('./routes/updatePostOnly_route');
 
 var app = express();
 
@@ -72,7 +73,7 @@ app.use('/comm_mem_id', com_members);
 app.use('/community', communities);
 app.use('/post', posts);
 app.use('/like', likes);
-app.use('/followwhom',follow);
+app.use('/followwhom', follow);
 app.use('/comment', comments);
 app.use('/comm_member', community_member);
 app.use('/poll', polls);
@@ -99,8 +100,9 @@ app.use('/checkMember', checkCommMember);
 app.use('/memberList', memberlist);
 app.use('/com_post', com_post);
 app.use('/likebypost', likeByPosts);
-app.use('/rating',ratings);
+app.use('/rating', ratings);
 app.use('/deletePost', deletePost);
+app.use('/updatePostOnly', updatePostOnly);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
