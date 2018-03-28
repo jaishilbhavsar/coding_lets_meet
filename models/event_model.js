@@ -10,7 +10,7 @@ var Event = {
     },
     getEventById: function (id, callback) {
 
-        return db.query("select * from event_tbl where event_id=?", [id], callback);
+        return db.query("select e.*,u.* from event_tbl e,user_tbl u where e.event_id=? and e.fk_user_id=u.user_id", [id], callback);
     },
     addEvent: function (e, filename, callback) {
         return db.query("insert into event_tbl values(?,?,?,?,?,?,?,?,?,?,?)", [null, e.event_name, e.event_des, filename, e.event_s_time, e.event_e_time, e.event_date, e.event_loc, e.fk_user_id, e.fk_comm_id, "true"], callback);
@@ -56,6 +56,15 @@ var Event = {
     },
     getAllUpcNotReg: function (user_id, callback) {
         return db.query("SELECT e.*,r.*,c.* from event_tbl e,rsvp_tbl r,communities_tbl c where e.event_id=r.fk_event_id AND e.fk_comm_id=c.comm_id AND r.rsvp_fk_user_id!=? and e.event_date > CURDATE()", [user_id], callback);
+    },
+    getPastEventUser: function (user_id, callback) {
+        return db.query("select e.*,r.*,c.* from event_tbl e,rsvp_tbl r,communities_tbl c where r.fk_event_id=e.event_id and c.comm_id=e.fk_comm_id and r.rsvp_fk_user_id=? and e.event_date < CURDATE()", [user_id], callback);
+    },
+    getPastEventsByCommunity: function (comm_id, callback) {
+        return db.query("SELECT e.*,u.*,c.* from event_tbl e,user_tbl u,communities_tbl c WHERE e.fk_user_id=u.user_id and e.fk_comm_id=c.comm_id and c.comm_id=? and e.event_date < CURDATE()", [comm_id], callback);
+    },
+    getUpcEventsByCommunity: function (comm_id, callback) {
+        return db.query("SELECT e.*,u.*,c.* from event_tbl e,user_tbl u,communities_tbl c WHERE e.fk_user_id=u.user_id and e.fk_comm_id=c.comm_id and c.comm_id=? and e.event_date > CURDATE()", [comm_id], callback);
     }
 
 };
