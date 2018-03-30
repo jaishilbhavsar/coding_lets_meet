@@ -38,7 +38,7 @@ var Event = {
         evn.on('result', function (row) {
             console.log(row.event_pic);
             if (row.post_pic != '') {
-                var path = 'public/images/posts/' + row.event_pic;
+                var path = 'public/images/events/' + row.event_pic;
                 console.log(path);
                 fs.unlink(path, function (err) {
                     if (err) {
@@ -49,6 +49,9 @@ var Event = {
             }
         });
         return db.query("update event_tbl set event_name=?,event_des=?,event_pic=?,event_s_time=?,event_e_time=?,event_date=?,event_loc=?,fk_comm_id=? where event_id=?", [e.event_name, e.event_des, filename, e.event_s_time, e.event_e_time, e.event_date, e.event_loc, e.fk_comm_id, id], callback);
+    },
+    updateEventOnly: function (e, callback) {
+        return db.query("update event_tbl set event_name=?,event_des=?,event_s_time=?,event_e_time=?,event_date=?,event_loc=?,fk_comm_id=? where event_id=?", [e.event_name, e.event_des, e.event_s_time, e.event_e_time, e.event_date, e.event_loc, e.fk_comm_id, id], callback);
     },
     eventRegisteredRsvp: function (user_id, callback) {
         //SELECT DISTINCT e.*,r.*,c.* from event_tbl e,rsvp_tbl r,communities_tbl c WHERE c.comm_id=e.fk_comm_id AND e.event_id=r.fk_event_id and NOT r.rsvp_fk_user_id='zeel91297@gmail.com'
@@ -65,6 +68,9 @@ var Event = {
     },
     getUpcEventsByCommunity: function (comm_id, callback) {
         return db.query("SELECT e.*,u.*,c.* from event_tbl e,user_tbl u,communities_tbl c WHERE e.fk_user_id=u.user_id and e.fk_comm_id=c.comm_id and c.comm_id=? and e.event_date > CURDATE()", [comm_id], callback);
+    },
+    getUnApprovedEvent: function (callback) {
+        return db.query("SELECT e.*,u.* from event_tbl e,user_tbl u WHERE e.fk_user_id=u.user_id and e.event_verify='false' and event_date > CURDATE()", callback);
     }
 
 };
