@@ -48,6 +48,7 @@ var updatePostOnly = require('./routes/updatePostOnly_route');
 var updateEventOnly = require('./routes/updateEventOnly_route');
 var updateCommunityOnly = require('./routes/updateCommunityOnly_route');
 var unApprovedEvent = require('./routes/eventUnapproved_routes');
+var deleteAllEvents = require('./routes/deleAllEvents_route');
 
 var app = express();
 
@@ -108,6 +109,7 @@ app.use('/deletePost', deletePost);
 app.use('/unApprovedEvent', unApprovedEvent);
 app.use('/updatePostOnly', updatePostOnly);
 app.use('/updateEventOnly', updateEventOnly);
+app.use('/deleAllEvent', deleteAllEvents);
 app.use('/updateCommunityOnly', updateCommunityOnly);
 
 // catch 404 and forward to error handler

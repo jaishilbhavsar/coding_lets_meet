@@ -16,17 +16,17 @@ router.get('/', function (req, res, next) {
     });
 });
 
-/*router.post('/',function(req,res,next){
+router.put('/', function (req, res, next) {
+    console.log(req.body);
 
-    events.addEvent(req.body,function(err,rows){
+    events.verify_event(req.body, function (err, rows) {
 
-        if(err){
+        if (err) {
             res.json(err);
-        }
-        else{
+        } else {
             res.json(req.body);
         }
     })
-});*/
+});
 
 module.exports = router;
