@@ -116,12 +116,9 @@ app.use('/updatePostOnly', updatePostOnly);
 app.use('/updateEventOnly', updateEventOnly);
 app.use('/deleAllEvent', deleteAllEvents);
 app.use('/updateCommunityOnly', updateCommunityOnly);
-<<<<<<< HEAD
 app.use('/commbyuser',commbyuser);
-=======
 app.use('/upcEvnByUser', upcEvnByUser);
 app.use('/pastEvnByUser', pastEvnByUser);
->>>>>>> 80e7eb0461795332dc5ac91626e0897ca78cd1de
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
