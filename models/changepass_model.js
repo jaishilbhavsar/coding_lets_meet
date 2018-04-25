@@ -1,8 +1,10 @@
-var db=require('../dbconnection');
+var db = require('../dbconnection');
 
-var changepassword={
-    changepass: function (u,callback) {
-        return db.query("update user_tbl set user_pass=? where user_id=?",[u.password,u.userid],callback) ;
+var changepassword = {
+    changepass: function (u, callback) {
+        console.log("update user_tbl set user_pass=? where user_id=?", [u.user_pass, u.user_id]);
+        return db.query("update user_tbl set user_pass=? where user_id=?", [u.user_pass, u.user_id], callback);
+
     }
 }
-module.exports=changepassword;
+module.exports = changepassword;
