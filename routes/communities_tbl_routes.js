@@ -66,9 +66,9 @@ router.post('/', upload.single('image'), function (req, res, next) {
     })
 });
 
-router.put('/:id', function (req, res, next) {
-
-    community.updateCommunity(req.params.id, req.body, function (err, rows) {
+router.put('/', upload.single('image'), function (req, res, next) {
+    console.log(req.file.filename);
+    community.updateCommunity(req.body, req.file.filename, function (err, rows) {
 
         if (err) {
             res.json(err);

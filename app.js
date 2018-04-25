@@ -46,6 +46,10 @@ var likeByPosts = require('./routes/like_post_user_routes');
 var ratings = require('./routes/ratings_tbl_routes');
 var deletePost = require('./routes/delete_post_route');
 var updatePostOnly = require('./routes/updatePostOnly_route');
+var updateEventOnly = require('./routes/updateEventOnly_route');
+var updateCommunityOnly = require('./routes/updateCommunityOnly_route');
+var unApprovedEvent = require('./routes/eventUnapproved_routes');
+var deleteAllEvents = require('./routes/deleAllEvents_route');
 
 var app = express();
 
@@ -104,7 +108,11 @@ app.use('/com_post', com_post);
 app.use('/likebypost', likeByPosts);
 app.use('/rating', ratings);
 app.use('/deletePost', deletePost);
+app.use('/unApprovedEvent', unApprovedEvent);
 app.use('/updatePostOnly', updatePostOnly);
+app.use('/updateEventOnly', updateEventOnly);
+app.use('/deleAllEvent', deleteAllEvents);
+app.use('/updateCommunityOnly', updateCommunityOnly);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

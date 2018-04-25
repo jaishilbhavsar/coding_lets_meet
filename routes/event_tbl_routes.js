@@ -68,10 +68,10 @@ router.post('/', upload.single('image'), (req, res, next) => {
 })
 
 
-router.put('/:id', upload.single('image'), function (req, res, next) {
+router.put('/', upload.single('image'), function (req, res, next) {
 
     console.log(req.body);
-    events.updateEvent(req.params.id, req.body, req.file.filename, function (err, rows) {
+    events.updateEvent(req.body, req.file.filename, function (err, rows) {
 
         if (err) {
             res.json(err);
