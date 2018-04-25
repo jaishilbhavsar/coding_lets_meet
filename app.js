@@ -18,6 +18,8 @@ var categories = require('./routes/category_tbl_routes');
 var user = require('./routes/user_tbl_routes');
 var stories = require('./routes/story_tbl_routes');
 var comingEvents = require('./routes/upcomingEvents_routes');
+var upcEvnByUser = require('./routes/event_upc_reg_route');
+var pastEvnByUser = require('./routes/event_past_reg_route');
 var events = require('./routes/event_tbl_routes');
 var feedbacks = require('./routes/feedback_tbl_routes');
 var feedbackByEvent = require('./routes/feedbackByEvent_routes');
@@ -38,7 +40,7 @@ var eventNotReg = require('./routes/eventNotReg_routes');
 var follow_user = require('./routes/follow_user_routes');
 var follow = require('./routes/follow_routes');
 var com_post = require('./routes/comment_post_routes');
-var change=require('./routes/changepass_routes');
+var change = require('./routes/changepass_routes');
 var allmembers = require('./routes/all_com_membr_routes');
 var memberlist = require('./routes/memberAddList_routes');
 var topcommunity = require('./routes/topCommunities_routes');
@@ -89,7 +91,7 @@ app.use('/login', u);
 app.use('/story', stories);
 app.use('/event', events);
 app.use('/feedback', feedbacks);
-app.use('/changepassword',change);
+app.use('/changePass', change);
 app.use('/feedbackByEvent', feedbackByEvent);
 app.use('/follower', followers);
 app.use('/following', following);
@@ -114,7 +116,12 @@ app.use('/updatePostOnly', updatePostOnly);
 app.use('/updateEventOnly', updateEventOnly);
 app.use('/deleAllEvent', deleteAllEvents);
 app.use('/updateCommunityOnly', updateCommunityOnly);
+<<<<<<< HEAD
 app.use('/commbyuser',commbyuser);
+=======
+app.use('/upcEvnByUser', upcEvnByUser);
+app.use('/pastEvnByUser', pastEvnByUser);
+>>>>>>> 80e7eb0461795332dc5ac91626e0897ca78cd1de
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
