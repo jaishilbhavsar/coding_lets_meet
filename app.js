@@ -47,19 +47,16 @@ var topcommunity = require('./routes/topCommunities_routes');
 var likeByPosts = require('./routes/like_post_user_routes');
 var ratings = require('./routes/ratings_tbl_routes');
 var deletePost = require('./routes/delete_post_route');
-<<<<<<< HEAD
 var ratecount = require('./routes/ratecount_routes');
 var rating_count = require('./routes/rating_count_routes');
 var avg_count = require('./routes/avgRateCount_routes');
 var all_story = require('./routes/allstory_routes');
-=======
 var updatePostOnly = require('./routes/updatePostOnly_route');
 var updateEventOnly = require('./routes/updateEventOnly_route');
 var updateCommunityOnly = require('./routes/updateCommunityOnly_route');
 var unApprovedEvent = require('./routes/eventUnapproved_routes');
 var deleteAllEvents = require('./routes/deleAllEvents_route');
 var commbyuser=require('./routes/community_byuser_routes');
->>>>>>> cd2aef8a037bb13f1ecbc719ceba64449f86ae66
 
 var app = express();
 
@@ -118,25 +115,18 @@ app.use('/com_post', com_post);
 app.use('/likebypost', likeByPosts);
 app.use('/rating', ratings);
 app.use('/deletePost', deletePost);
-<<<<<<< HEAD
 app.use('/ratecount', ratecount);
 app.use('/ratingcount', rating_count);
 app.use('/avgcount', avg_count);
 app.use('/allstory', all_story);
-
-=======
 app.use('/unApprovedEvent', unApprovedEvent);
 app.use('/updatePostOnly', updatePostOnly);
 app.use('/updateEventOnly', updateEventOnly);
 app.use('/deleAllEvent', deleteAllEvents);
 app.use('/updateCommunityOnly', updateCommunityOnly);
-<<<<<<< HEAD
 app.use('/commbyuser',commbyuser);
-=======
 app.use('/upcEvnByUser', upcEvnByUser);
 app.use('/pastEvnByUser', pastEvnByUser);
->>>>>>> 80e7eb0461795332dc5ac91626e0897ca78cd1de
->>>>>>> cd2aef8a037bb13f1ecbc719ceba64449f86ae66
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
