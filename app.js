@@ -117,18 +117,11 @@ app.use('/updatePostOnly', updatePostOnly);
 app.use('/updateEventOnly', updateEventOnly);
 app.use('/deleAllEvent', deleteAllEvents);
 app.use('/updateCommunityOnly', updateCommunityOnly);
-<<<<<<< HEAD
-app.use('/commbyuser',commbyuser);
-app.use('/upcEvnByUser', upcEvnByUser);
-app.use('/pastEvnByUser', pastEvnByUser);
-
-=======
 app.use('/upcEvnByUser', upcEvnByUser);
 app.use('/pastEvnByUser', pastEvnByUser);
 app.use('/commbyuser',commbyuser);
 app.use('/mycommunity',mycomm);
 app.use('/myevent',myevents);
->>>>>>> 7d7af77c98e4250d605c6e9496b51ccb7fff41cc
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
