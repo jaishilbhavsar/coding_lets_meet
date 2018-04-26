@@ -18,6 +18,8 @@ var categories = require('./routes/category_tbl_routes');
 var user = require('./routes/user_tbl_routes');
 var stories = require('./routes/story_tbl_routes');
 var comingEvents = require('./routes/upcomingEvents_routes');
+var upcEvnByUser = require('./routes/event_upc_reg_route');
+var pastEvnByUser = require('./routes/event_past_reg_route');
 var events = require('./routes/event_tbl_routes');
 var feedbacks = require('./routes/feedback_tbl_routes');
 var feedbackByEvent = require('./routes/feedbackByEvent_routes');
@@ -36,17 +38,28 @@ var checkCommMember = require('./routes/checkMember_routes');
 var eventRegistered = require('./routes/event_rsvp_route');
 var eventNotReg = require('./routes/eventNotReg_routes');
 var follow_user = require('./routes/follow_user_routes');
+var follow = require('./routes/follow_routes');
 var com_post = require('./routes/comment_post_routes');
+var change = require('./routes/changepass_routes');
 var allmembers = require('./routes/all_com_membr_routes');
 var memberlist = require('./routes/memberAddList_routes');
 var topcommunity = require('./routes/topCommunities_routes');
 var likeByPosts = require('./routes/like_post_user_routes');
 var ratings = require('./routes/ratings_tbl_routes');
 var deletePost = require('./routes/delete_post_route');
+<<<<<<< HEAD
 var ratecount = require('./routes/ratecount_routes');
 var rating_count = require('./routes/rating_count_routes');
 var avg_count = require('./routes/avgRateCount_routes');
 var all_story = require('./routes/allstory_routes');
+=======
+var updatePostOnly = require('./routes/updatePostOnly_route');
+var updateEventOnly = require('./routes/updateEventOnly_route');
+var updateCommunityOnly = require('./routes/updateCommunityOnly_route');
+var unApprovedEvent = require('./routes/eventUnapproved_routes');
+var deleteAllEvents = require('./routes/deleAllEvents_route');
+var commbyuser=require('./routes/community_byuser_routes');
+>>>>>>> cd2aef8a037bb13f1ecbc719ceba64449f86ae66
 
 var app = express();
 
@@ -75,6 +88,7 @@ app.use('/comm_mem_id', com_members);
 app.use('/community', communities);
 app.use('/post', posts);
 app.use('/like', likes);
+app.use('/followwhom', follow);
 app.use('/comment', comments);
 app.use('/comm_member', community_member);
 app.use('/poll', polls);
@@ -84,6 +98,7 @@ app.use('/login', u);
 app.use('/story', stories);
 app.use('/event', events);
 app.use('/feedback', feedbacks);
+app.use('/changePass', change);
 app.use('/feedbackByEvent', feedbackByEvent);
 app.use('/follower', followers);
 app.use('/following', following);
@@ -103,11 +118,25 @@ app.use('/com_post', com_post);
 app.use('/likebypost', likeByPosts);
 app.use('/rating', ratings);
 app.use('/deletePost', deletePost);
+<<<<<<< HEAD
 app.use('/ratecount', ratecount);
 app.use('/ratingcount', rating_count);
 app.use('/avgcount', avg_count);
 app.use('/allstory', all_story);
 
+=======
+app.use('/unApprovedEvent', unApprovedEvent);
+app.use('/updatePostOnly', updatePostOnly);
+app.use('/updateEventOnly', updateEventOnly);
+app.use('/deleAllEvent', deleteAllEvents);
+app.use('/updateCommunityOnly', updateCommunityOnly);
+<<<<<<< HEAD
+app.use('/commbyuser',commbyuser);
+=======
+app.use('/upcEvnByUser', upcEvnByUser);
+app.use('/pastEvnByUser', pastEvnByUser);
+>>>>>>> 80e7eb0461795332dc5ac91626e0897ca78cd1de
+>>>>>>> cd2aef8a037bb13f1ecbc719ceba64449f86ae66
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

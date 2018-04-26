@@ -29,7 +29,7 @@ router.get('/:id?', function (req, res, next) {
 
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'public/images/posts')
+        cb(null, 'public/images/posts/')
     },
     filename: (req, file, cb) => {
         cb(null, 'post' + '-' + Date.now() + path.extname(file.originalname))
@@ -50,9 +50,9 @@ router.post('/', upload.single('image'), (req, res, next) => {
     });
 });
 
-router.put('/', function (req, res, next) {
-
-    posts.updatePost(req.body, function (err, rows) {
+router.put('/', upload.single('image'), function (req, res, next) {
+    console.log(req.file.filename);
+    posts.updatePost(req.body, req.file.filename, function (err, rows) {
 
         if (err) {
             res.json(err);

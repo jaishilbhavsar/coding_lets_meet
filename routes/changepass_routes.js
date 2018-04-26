@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var u = require('../models/user_login_model');
+var chnpass = require('../models/changepass_model');
 
-router.post('/', function (req, res, net) {
-  u.getUser(req.body, function (err, rows) {
+router.put('/', function (req, res, net) {
+  chnpass.changepass(req.body, function (err, rows) {
     console.log(req.body);
     if (err) {
       res.json(err);
