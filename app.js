@@ -57,7 +57,8 @@ var updateCommunityOnly = require('./routes/updateCommunityOnly_route');
 var unApprovedEvent = require('./routes/eventUnapproved_routes');
 var deleteAllEvents = require('./routes/deleAllEvents_route');
 var commbyuser=require('./routes/community_byuser_routes');
-
+var mycomm=require('./routes/mycommunity_routes');
+var myevents=require('./routes/myevent_routes');
 var app = express();
 
 // view engine setup
@@ -124,10 +125,18 @@ app.use('/updatePostOnly', updatePostOnly);
 app.use('/updateEventOnly', updateEventOnly);
 app.use('/deleAllEvent', deleteAllEvents);
 app.use('/updateCommunityOnly', updateCommunityOnly);
+<<<<<<< HEAD
 app.use('/commbyuser',commbyuser);
 app.use('/upcEvnByUser', upcEvnByUser);
 app.use('/pastEvnByUser', pastEvnByUser);
 
+=======
+app.use('/upcEvnByUser', upcEvnByUser);
+app.use('/pastEvnByUser', pastEvnByUser);
+app.use('/commbyuser',commbyuser);
+app.use('/mycommunity',mycomm);
+app.use('/myevent',myevents);
+>>>>>>> 7d7af77c98e4250d605c6e9496b51ccb7fff41cc
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
