@@ -2,8 +2,9 @@ var db = require('../dbconnection');
 
 var Story = {
 
-    getAllStories: function (callback) {
-        return db.query("select * from story_tbl s,user_tbl u where s.fk_user_id=u.user_id ", callback);
+    getAllStories: function (id,callback) {
+        //return db.query("select * from story_tbl s,user_tbl u where s.fk_user_id=u.user_id ", callback);
+        return db.query("SELECT * FROM story_tbl s,user_tbl u where s.fk_user_id=u.user_id and s.fk_user_id NOT IN (?)",[id],callback);
     },
     getStoryById: function (id, callback) {
 

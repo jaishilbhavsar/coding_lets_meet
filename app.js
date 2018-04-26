@@ -43,6 +43,10 @@ var topcommunity = require('./routes/topCommunities_routes');
 var likeByPosts = require('./routes/like_post_user_routes');
 var ratings = require('./routes/ratings_tbl_routes');
 var deletePost = require('./routes/delete_post_route');
+var ratecount = require('./routes/ratecount_routes');
+var rating_count = require('./routes/rating_count_routes');
+var avg_count = require('./routes/avgRateCount_routes');
+var all_story = require('./routes/allstory_routes');
 
 var app = express();
 
@@ -97,8 +101,13 @@ app.use('/checkMember', checkCommMember);
 app.use('/memberList', memberlist);
 app.use('/com_post', com_post);
 app.use('/likebypost', likeByPosts);
-app.use('/rating',ratings);
+app.use('/rating', ratings);
 app.use('/deletePost', deletePost);
+app.use('/ratecount', ratecount);
+app.use('/ratingcount', rating_count);
+app.use('/avgcount', avg_count);
+app.use('/allstory', all_story);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
