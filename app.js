@@ -56,6 +56,8 @@ var commbyuser=require('./routes/community_byuser_routes');
 var mycomm=require('./routes/mycommunity_routes');
 var myevents=require('./routes/myevent_routes');
 var iffollowing=require('./routes/iffollowing_routes');
+var infoll=require('./routes/insert_follower_routes');
+var delfoll=require('./routes/delete_follower_routes');
 var app = express();
 
 // view engine setup
@@ -124,6 +126,8 @@ app.use('/commbyuser',commbyuser);
 app.use('/mycommunity',mycomm);
 app.use('/myevent',myevents);
 app.use('/iffollowing',iffollowing);
+app.use('/insertfollower',infoll);
+app.use('/deletefollower',delfoll);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
