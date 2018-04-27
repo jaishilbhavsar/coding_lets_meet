@@ -10,6 +10,12 @@ var event_community = {
     },
     getEventsByCommunityId: function (id, callback) {
         return db.query("select e.*,c.* from event_tbl e,communities_tbl c where c.comm_id=? and c.comm_id=e.fk_comm_id", [id], callback);
+    },
+    getCommunityByPastEvent:function(id,callback){
+        return db.query("select * from event_tbl e,communities_tbl c where e.fk_comm_id=c.comm_id and e.event_date < CURDATE() and e.event_verify='true' and c.comm_id=?",[id],callback);
+    },
+    getCommunityByUpcomingEvent:function(id,callback){
+        return db.query("select * from event_tbl e,communities_tbl c where e.fk_comm_id=c.comm_id and e.event_date > CURDATE() and e.event_verify='true' and c.comm_id=?",[id],callback);
     }
 };
 

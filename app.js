@@ -47,6 +47,10 @@ var topcommunity = require('./routes/topCommunities_routes');
 var likeByPosts = require('./routes/like_post_user_routes');
 var ratings = require('./routes/ratings_tbl_routes');
 var deletePost = require('./routes/delete_post_route');
+var ratecount = require('./routes/ratecount_routes');
+var rating_count = require('./routes/rating_count_routes');
+var avg_count = require('./routes/avgRateCount_routes');
+var all_story = require('./routes/allstory_routes');
 var updatePostOnly = require('./routes/updatePostOnly_route');
 var updateEventOnly = require('./routes/updateEventOnly_route');
 var updateCommunityOnly = require('./routes/updateCommunityOnly_route');
@@ -55,9 +59,14 @@ var deleteAllEvents = require('./routes/deleAllEvents_route');
 var commbyuser=require('./routes/community_byuser_routes');
 var mycomm=require('./routes/mycommunity_routes');
 var myevents=require('./routes/myevent_routes');
+<<<<<<< HEAD
 var iffollowing=require('./routes/iffollowing_routes');
 var infoll=require('./routes/insert_follower_routes');
 var delfoll=require('./routes/delete_follower_routes');
+=======
+var comm_past_Event=require('./routes/community_past_event_route');
+var comm_upcoming_event=require('./routes/community_upcoming_events_routes')
+>>>>>>> 89c4be3617367478e38a6624ccff57778b2f8ed9
 var app = express();
 
 // view engine setup
@@ -115,6 +124,10 @@ app.use('/com_post', com_post);
 app.use('/likebypost', likeByPosts);
 app.use('/rating', ratings);
 app.use('/deletePost', deletePost);
+app.use('/ratecount', ratecount);
+app.use('/ratingcount', rating_count);
+app.use('/avgcount', avg_count);
+app.use('/allstory', all_story);
 app.use('/unApprovedEvent', unApprovedEvent);
 app.use('/updatePostOnly', updatePostOnly);
 app.use('/updateEventOnly', updateEventOnly);
@@ -125,9 +138,15 @@ app.use('/pastEvnByUser', pastEvnByUser);
 app.use('/commbyuser',commbyuser);
 app.use('/mycommunity',mycomm);
 app.use('/myevent',myevents);
+<<<<<<< HEAD
 app.use('/iffollowing',iffollowing);
 app.use('/insertfollower',infoll);
 app.use('/deletefollower',delfoll);
+=======
+app.use('/comm_past_event',comm_past_Event);
+app.use('/comm_upcoming_event',comm_upcoming_event);
+
+>>>>>>> 89c4be3617367478e38a6624ccff57778b2f8ed9
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
