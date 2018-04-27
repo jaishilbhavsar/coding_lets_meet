@@ -13,7 +13,7 @@ var Event = {
         return db.query("select e.*,u.* from event_tbl e,user_tbl u where e.event_id=? and e.fk_user_id=u.user_id", [id], callback);
     },
     addEvent: function (e, filename, callback) {
-        return db.query("insert into event_tbl values(?,?,?,?,?,?,?,?,?,?,?)", [null, e.event_name, e.event_des, filename, e.event_s_time, e.event_e_time, e.event_date, e.event_loc, e.fk_user_id, e.fk_comm_id, "true"], callback);
+        return db.query("insert into event_tbl values(?,?,?,?,?,?,?,?,?,?,?)", [null, e.event_name, e.event_des, filename, e.event_s_time, e.event_e_time, e.event_date, e.event_loc, e.fk_user_id, e.fk_comm_id, "false"], callback);
         //return db.query("insert into event_tbl (event_name,event_des,event_pic,event_s_time,event_e_time,event_date,event_loc,fk_user_id,fk_comm_id,verify) values(?,?,?,?,?,?,?,?,?,?)",[e.event_name,e.event_des,e.event_pic,e.event_s_time,e.event_e_time,e.event_date,e.event_loc,e.fk_user_id,e.fk_comm_id],callback);
     },
     deleteEvent: function (id, callback) {
