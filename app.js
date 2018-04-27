@@ -59,6 +59,8 @@ var deleteAllEvents = require('./routes/deleAllEvents_route');
 var commbyuser=require('./routes/community_byuser_routes');
 var mycomm=require('./routes/mycommunity_routes');
 var myevents=require('./routes/myevent_routes');
+var comm_past_Event=require('./routes/community_past_event_route');
+var comm_upcoming_event=require('./routes/community_upcoming_events_routes')
 var app = express();
 
 // view engine setup
@@ -125,18 +127,14 @@ app.use('/updatePostOnly', updatePostOnly);
 app.use('/updateEventOnly', updateEventOnly);
 app.use('/deleAllEvent', deleteAllEvents);
 app.use('/updateCommunityOnly', updateCommunityOnly);
-<<<<<<< HEAD
-app.use('/commbyuser',commbyuser);
-app.use('/upcEvnByUser', upcEvnByUser);
-app.use('/pastEvnByUser', pastEvnByUser);
-
-=======
 app.use('/upcEvnByUser', upcEvnByUser);
 app.use('/pastEvnByUser', pastEvnByUser);
 app.use('/commbyuser',commbyuser);
 app.use('/mycommunity',mycomm);
 app.use('/myevent',myevents);
->>>>>>> 7d7af77c98e4250d605c6e9496b51ccb7fff41cc
+app.use('/comm_past_event',comm_past_Event);
+app.use('/comm_upcoming_event',comm_upcoming_event);
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
