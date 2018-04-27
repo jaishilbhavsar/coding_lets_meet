@@ -1,5 +1,5 @@
 //var email = require("emailjs/email");
-var nodemailer = require('nodemailer');
+/* var nodemailer = require('nodemailer');
 var forgetpass = {
     sendingMail: function (demo, callback) {
         console.log(demo);
@@ -26,7 +26,7 @@ var forgetpass = {
             }
         });
     }
-};
+}; */
 /* var forgetpass = {
 
     sendMail: function (demo, callback) {
@@ -93,5 +93,5 @@ transporter.sendMail(mailOptions, function (error, info) {
     }
 }); */
 
-module.exports = forgetpass;
+//module.exports = forgetpass;
 //module.exports = forgetpass;
