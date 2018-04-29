@@ -1,4 +1,5 @@
 var db = require('../dbconnection');
+var fs = require('fs');
 
 var community = {
 
