@@ -3,7 +3,7 @@ var router = express.Router();
 var demo = require('../models/demo');
 
 router.post('/', function (req, res, next) {
-
+    console.log(req.body);
     demo.sendingMail(req.body, function (err, rows) {
 
         if (err) {
