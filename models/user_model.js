@@ -24,10 +24,27 @@
      deleteUser: function (id, callback) {
          return db.query("delete from user_tbl where user_id=?", [id], callback);
      },
-     updateUser: function (u, callback) {
+     updateUserOnly: function (u, callback) {
          console.log(u.user_id);
          console.log(u.user_name);
-         return db.query("update user_tbl set user_name=?,user_pic=?,gender=?,user_mob_no=?,user_bdate=?,token=? where user_id=?", [u.user_name, u.user_pic, u.gender, u.user_mob_no, u.user_bdate, u.token, u.user_id], callback);
+         return db.query("update user_tbl set user_name=?,gender=?,user_mob_no=?,user_bdate=?,token=? where user_id=?", [u.user_name, u.gender, u.user_mob_no, u.user_bdate, u.token, u.user_id], callback);
+     },
+     updateUser: function (u, filename, callback) {
+         var post = db.query("select * from user_tbl where user_id=?", [u.user_id]);
+         post.on('result', function (row) {
+             console.log(row.user_pic);
+             if (row.user_pic != '') {
+                 var path = 'public/images/users/' + row.user_pic;
+                 console.log(path);
+                 fs.unlink(path, function (err) {
+                     if (err) {
+                         die(err);
+                     }
+                     console.log('Deleted successfuly');
+                 });
+             }
+         });
+         return db.query("update user_tbl set user_name=?,user_pic=?,gender=?,user_mob_no=?,user_bdate=?,token=? where user_id=?", [u.user_name, filename, u.gender, u.user_mob_no, u.user_bdate, u.token, u.user_id], callback);
      },
      getUser: function (us, callback) {
 
