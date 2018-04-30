@@ -64,7 +64,7 @@ var Event = {
         return db.query("select e.*,r.*,c.* from event_tbl e,rsvp_tbl r,communities_tbl c where r.fk_event_id=e.event_id and c.comm_id=e.fk_comm_id and r.rsvp_fk_user_id=? and e.event_date > CURDATE() and e.event_verify='true'", [user_id], callback);
     },
     getAllUpcNotReg: function (user_id, callback) {
-        return db.query("SELECT * from event_tbl e,communities_tbl c where e.fk_comm_id=c.comm_id AND e.event_date > CURDATE() and e.event_verify='true'", [user_id], callback);
+        return db.query("SELECT * from event_tbl e where e.event_date > CURDATE() and e.event_verify='true'", [user_id], callback);
     },
     getPastEventUser: function (user_id, callback) {
         return db.query("select e.*,r.*,c.* from event_tbl e,rsvp_tbl r,communities_tbl c where r.fk_event_id=e.event_id and c.comm_id=e.fk_comm_id and r.rsvp_fk_user_id=? and e.event_date < CURDATE() and e.event_verify='true'", [user_id], callback);
