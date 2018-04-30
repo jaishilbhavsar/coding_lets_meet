@@ -1,0 +1,33 @@
+/* var count = 0;
+
+function intervalFunc() {
+  count++;
+  console.log("hello");
+
+  if (count == 5) {
+    //clearInterval(this);
+  }
+}
+setInterval(intervalFunc, 1500); */
+
+function deleteRecord(callback) {
+  //db.query("select * from story_tbl where story_time<=DATE_SUB(NOW(), INTERVAL 1 MINUTE)");
+  return db.query("delete from story_tbl where story_remove=NOW()");
+  //console.log(Date.now());
+  console.log("Insiede delete");
+}
+
+/* setInterval(function () {
+  deleteRecord()
+}, 1500); */
+
+setInterval(function () {
+  deleteRecord()
+}, 1500);
+
+function repeatReq() {
+  setInterval(function () {
+    deleteRecord(repeatReq)
+  }, 1500);
+}
+deleteRecord(repeatReq);

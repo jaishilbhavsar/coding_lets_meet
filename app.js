@@ -1,4 +1,5 @@
 var express = require('express');
+var mysql = require('mysql');
 var db = require('./dbconnection');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -83,35 +84,10 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-/* var count = 0;
 
-function intervalFunc() {
-  count++;
-  console.log("hello");
 
-  if (count == 5) {
-    //clearInterval(this);
-  }
-}
-setInterval(intervalFunc, 1500); */
 
-/* function deleteRecord(callback) {
-  //db.query("select * from story_tbl where story_time<=DATE_SUB(NOW(), INTERVAL 1 MINUTE)");
-  db.query("delete from story_tbl where story_time<=DATE_SUB(NOW(), INTERVAL 1 MINUTE)");
-  console.log(Date.now());
-  console.log("Insiede delete");
-}
 
-setInterval(function () {
-  deleteRecord()
-}, 1500); */
-
-/* function repeatReq() {
-  setInterval(function () {
-    deleteRecord(repeatReq)
-  }, 1500);
-} */
-//deleteRecord(repeatReq);
 app.use('/', index);
 app.use('/users', users);
 app.use('/topcommunity', topcommunity);

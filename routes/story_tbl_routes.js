@@ -1,71 +1,65 @@
-var express=require('express');
-var router=express.Router();
-var stories=require('../models/story_model');
+var express = require('express');
+var router = express.Router();
+var stories = require('../models/story_model');
 
-router.get('/:id?',function(req,res,next){
+router.get('/:id?', function (req, res, next) {
 
-    if(req.params.id){
-        stories.getStoryById(req.params.id,function(err,rows){
+    if (req.params.id) {
+        stories.getStoryById(req.params.id, function (err, rows) {
 
-            if(err){
+            if (err) {
                 res.json(err);
-            }
-            else{
+            } else {
                 res.json(rows);
             }
         });
-    }
-    else{
-        stories.getAllStories(function(err,rows){
+    } else {
+        stories.getAllStories(function (err, rows) {
 
-            if(err){
+            if (err) {
                 res.json(err);
-            }
-            else{
+            } else {
                 res.json(rows);
             }
         });
     }
 });
 
-router.post('/',function(req, res, next){
+router.post('/', function (req, res, next) {
 
-    stories.addStory(req.body,function(err,rows){
+    stories.addStory(req.body, function (err, rows) {
 
-        if(err){
+        if (err) {
             res.json(err);
-        }
-        else{
+        } else {
             res.json(rows);
         }
     })
 });
 
 
-router.put('/:id',function(req,res,next){
+router.put('/:id', function (req, res, next) {
 
-    stories.updateStory(req.params.id,req.body,function(err,rows){
+    stories.updateStory(req.params.id, req.body, function (err, rows) {
 
-        if(err){
+        if (err) {
             res.json(err);
-        }
-        else{
+        } else {
             res.json(rows);
         }
     });
 });
 
-router.delete('/:id',function(req,res,next){
+router.delete('/', function (req, res, next) {
 
-    stories.deleteStory(req.params.id,function(err,rows){
+    stories.deleteStory(function (err, rows) {
 
-        if(err){
+        if (err) {
             res.json(err);
-        }
-        else{
+        } else {
             res.json(rows);
         }
     });
 });
 
-module.exports=router;
+module.exports = router;
