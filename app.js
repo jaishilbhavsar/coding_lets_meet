@@ -1,4 +1,5 @@
 var express = require('express');
+var db = require('./dbconnection');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -51,19 +52,25 @@ var ratecount = require('./routes/ratecount_routes');
 var rating_count = require('./routes/rating_count_routes');
 var avg_count = require('./routes/avgRateCount_routes');
 var all_story = require('./routes/allstory_routes');
+var updateUserOnly = require('./routes/updateUserOnly_route');
 var updatePostOnly = require('./routes/updatePostOnly_route');
 var updateEventOnly = require('./routes/updateEventOnly_route');
 var updateCommunityOnly = require('./routes/updateCommunityOnly_route');
 var unApprovedEvent = require('./routes/eventUnapproved_routes');
 var deleteAllEvents = require('./routes/deleAllEvents_route');
-var commbyuser=require('./routes/community_byuser_routes');
-var mycomm=require('./routes/mycommunity_routes');
-var myevents=require('./routes/myevent_routes');
-var iffollowing=require('./routes/iffollowing_routes');
-var infoll=require('./routes/insert_follower_routes');
-var delfoll=require('./routes/delete_follower_routes');
-var comm_past_Event=require('./routes/community_past_event_route');
-var comm_upcoming_event=require('./routes/community_upcoming_events_routes')
+var commbyuser = require('./routes/community_byuser_routes');
+var mycomm = require('./routes/mycommunity_routes');
+var myevents = require('./routes/myevent_routes');
+var iffollowing = require('./routes/iffollowing_routes');
+var infoll = require('./routes/insert_follower_routes');
+var delfoll = require('./routes/delete_follower_routes');
+var comm_past_Event = require('./routes/community_past_event_route');
+var comm_upcoming_event = require('./routes/community_upcoming_events_routes');
+var mypastevent=require('./routes/mypastevents_routes');
+var myupevents=require('./routes/myupcomingevents_routes');
+var ecount=require('./routes/all_count_routes');
+var ccount=require('./routes/community_count_routes');
+var ucount=require('./routes/user_count_routes');
 var app = express();
 
 // view engine setup
@@ -81,6 +88,35 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+/* var count = 0;
+
+function intervalFunc() {
+  count++;
+  console.log("hello");
+
+  if (count == 5) {
+    //clearInterval(this);
+  }
+}
+setInterval(intervalFunc, 1500); */
+
+/* function deleteRecord(callback) {
+  //db.query("select * from story_tbl where story_time<=DATE_SUB(NOW(), INTERVAL 1 MINUTE)");
+  db.query("delete from story_tbl where story_time<=DATE_SUB(NOW(), INTERVAL 1 MINUTE)");
+  console.log(Date.now());
+  console.log("Insiede delete");
+}
+
+setInterval(function () {
+  deleteRecord()
+}, 1500); */
+
+/* function repeatReq() {
+  setInterval(function () {
+    deleteRecord(repeatReq)
+  }, 1500);
+} */
+//deleteRecord(repeatReq);
 app.use('/', index);
 app.use('/users', users);
 app.use('/topcommunity', topcommunity);
@@ -126,20 +162,26 @@ app.use('/ratingcount', rating_count);
 app.use('/avgcount', avg_count);
 app.use('/allstory', all_story);
 app.use('/unApprovedEvent', unApprovedEvent);
+app.use('/updateUserOnly', updateUserOnly);
 app.use('/updatePostOnly', updatePostOnly);
 app.use('/updateEventOnly', updateEventOnly);
 app.use('/deleAllEvent', deleteAllEvents);
 app.use('/updateCommunityOnly', updateCommunityOnly);
 app.use('/upcEvnByUser', upcEvnByUser);
 app.use('/pastEvnByUser', pastEvnByUser);
-app.use('/commbyuser',commbyuser);
-app.use('/mycommunity',mycomm);
-app.use('/myevent',myevents);
-app.use('/iffollowing',iffollowing);
-app.use('/insertfollower',infoll);
-app.use('/deletefollower',delfoll);
-app.use('/comm_past_event',comm_past_Event);
-app.use('/comm_upcoming_event',comm_upcoming_event);
+app.use('/commbyuser', commbyuser);
+app.use('/mycommunity', mycomm);
+app.use('/myevent', myevents);
+app.use('/iffollowing', iffollowing);
+app.use('/insertfollower', infoll);
+app.use('/deletefollower', delfoll);
+app.use('/comm_past_event', comm_past_Event);
+app.use('/comm_upcoming_event', comm_upcoming_event);
+app.use('/mypastevent',mypastevent);
+app.use('/myupcomingevent',myupevents);
+app.use('/ccount',ccount);
+app.use('/ecount',ecount);
+app.use('/ucount',ucount);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
