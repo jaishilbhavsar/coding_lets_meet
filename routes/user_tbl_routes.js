@@ -55,9 +55,9 @@ router.post('/', upload.single('image'), function (req, res, next) {
 });
 
 
-router.put('/', function (req, res, next) {
-
-    users.updateUser(req.body, function (err, rows) {
+router.put('/', upload.single('image'), function (req, res, next) {
+    console.log(req.file.filename);
+    users.updateUser(req.body, req.file.filename, function (err, rows) {
 
         if (err) {
             res.json(err);

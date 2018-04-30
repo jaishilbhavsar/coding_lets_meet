@@ -1,5 +1,5 @@
 //var email = require("emailjs/email");
-/* var nodemailer = require('nodemailer');
+var nodemailer = require('nodemailer');
 var forgetpass = {
     sendingMail: function (demo, callback) {
         console.log(demo);
@@ -13,9 +13,9 @@ var forgetpass = {
 
         var mailOptions = {
             from: 'letsmeet531@gmail.com',
-            to: 'demo.name',
-            subject: 'demo.subject',
-            text: 'demo.message'
+            to: demo.name,
+            subject: demo.subject,
+            text: demo.message
         };
 
         transporter.sendMail(mailOptions, function (error, info) {
@@ -26,7 +26,7 @@ var forgetpass = {
             }
         });
     }
-}; */
+};
 /* var forgetpass = {
 
     sendMail: function (demo, callback) {
@@ -70,28 +70,5 @@ var forgetpass = {
         
     }
 }; */
-/* var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'letsmeet531@gmail.com',
-        pass: 'letsmeet'
-    }
-});
 
-var mailOptions = {
-    from: 'letsmeet531@gmail.com',
-    to: 'demo.name',
-    subject: 'demo.subject',
-    text: 'demo.message'
-};
-
-transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-        console.log(error);
-    } else {
-        console.log('Email sent: ' + info.response);
-    }
-}); */
-
-//module.exports = forgetpass;
-//module.exports = forgetpass;
+module.exports = forgetpass;
