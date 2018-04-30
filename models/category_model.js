@@ -6,7 +6,7 @@ var category = {
         return db.query("select * from category_tbl", callback);
     },
     getCategoryById: function (id, callback) {
-        return db.query("select * from category_tbl where cat_id=?", [id], callback);
+        return db.query("select * from category_tbl cat,communities_tbl com where cat.cat_id=com.comm_fk_cat_id and com.comm_fk_cat_id=?", [id], callback);
     },
     insertCategory: function (cat, callback) {
         return db.query("insert into category_tbl values(?,?)", [null, cat.cat_name], callback);
