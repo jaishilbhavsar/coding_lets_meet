@@ -8,13 +8,11 @@ var Event = {
     getUpcomingEvents: function (callback) {
         return db.query("select * from event_tbl where event_date > CURDATE() and e.event_verify='true'", callback);
     },
-    getmyUpcomingEvents:function(id,callback)
-    {
-        return db.query("select * from event_tbl where event_date > CURDATE() and event_verify='true' and fk_user_id=?",[id], callback);        
+    getmyUpcomingEvents: function (id, callback) {
+        return db.query("select * from event_tbl where event_date > CURDATE() and event_verify='true' and fk_user_id=?", [id], callback);
     },
-    getmyPastEvents:function(id,callback)
-    {
-        return db.query("select * from event_tbl where event_date < CURDATE() and event_verify='true' and fk_user_id=?",[id], callback);
+    getmyPastEvents: function (id, callback) {
+        return db.query("select * from event_tbl where event_date < CURDATE() and event_verify='true' and fk_user_id=?", [id], callback);
     },
     getEventById: function (id, callback) {
 
@@ -47,7 +45,7 @@ var Event = {
             console.log(row.event_pic);
             if (row.event_pic != '') {
                 var path = 'public/images/events/' + row.event_pic;
-                console.log(path);
+                console.log("todelete:" + path);
                 fs.unlink(path, function (err) {
                     if (err) {
                         console.log(err);
@@ -56,7 +54,7 @@ var Event = {
                 });
             }
         });
-        return db.query("update event_tbl set event_name=?,event_des=?,event_pic=?,event_s_time=?,event_e_time=?,event_date=?,event_loc=?,fk_comm_id=? where event_id=?", [e.event_name, e.event_des, filename, e.event_s_time, e.event_e_time, e.event_date, e.event_loc, e.fk_comm_id, e.event_idid], callback);
+        return db.query("update event_tbl set event_name=?,event_des=?,event_pic=?,event_s_time=?,event_e_time=?,event_date=?,event_loc=?,fk_comm_id=? where event_id=?", [e.event_name, e.event_des, filename, e.event_s_time, e.event_e_time, e.event_date, e.event_loc, e.fk_comm_id, e.event_id], callback);
     },
     updateEventOnly: function (e, callback) {
         return db.query("update event_tbl set event_name=?,event_des=?,event_s_time=?,event_e_time=?,event_date=?,event_loc=?,fk_comm_id=? where event_id=?", [e.event_name, e.event_des, e.event_s_time, e.event_e_time, e.event_date, e.event_loc, e.fk_comm_id, e.event_id], callback);
