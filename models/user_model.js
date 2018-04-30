@@ -21,6 +21,20 @@ var User = {
         return db.query("insert into user_tbl(user_id,user_name,user_pass,user_pic,gender,user_mob_no,user_bdate,token) values(?,?,?,?,?,?,?,?)", [u.user_id, u.user_name, u.user_pass, filename, u.gender, u.user_mob_no, u.user_bdate, u.token], callback);
     },
     deleteUser: function (id, callback) {
+        var comm = db.query("select * from user_tbl where user_id=?", [id]);
+        comm.on('result', function (row) {
+            console.log(row.user_id);
+            if (row.user_id != '') {
+                var path = 'public/images/users/' + row.user_id;
+                console.log(path);
+                fs.unlink(path, function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    console.log('Deleted successfuly');
+                });
+            }
+        });
         return db.query("delete from user_tbl where user_id=?", [id], callback);
     },
     updateUserOnly: function (u, callback) {
