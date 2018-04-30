@@ -8,6 +8,14 @@ var Event = {
     getUpcomingEvents: function (callback) {
         return db.query("select * from event_tbl where event_date > CURDATE() and e.event_verify='true'", callback);
     },
+    getmyUpcomingEvents:function(id,callback)
+    {
+        return db.query("select * from event_tbl where event_date > CURDATE() and event_verify='true' and fk_user_id=?",[id], callback);        
+    },
+    getmyPastEvents:function(id,callback)
+    {
+        return db.query("select * from event_tbl where event_date < CURDATE() and event_verify='true' and fk_user_id=?",[id], callback);
+    },
     getEventById: function (id, callback) {
 
         return db.query("select e.*,u.* from event_tbl e,user_tbl u where e.event_id=? and e.fk_user_id=u.user_id", [id], callback);
