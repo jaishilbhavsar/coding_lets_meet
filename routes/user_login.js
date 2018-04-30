@@ -7,10 +7,10 @@ router.post('/', function (req, res, next) {
     console.log(req.body);
     if (err) {
       res.json(err);
-      //alert('not valid');
+      alert('not valid');
     } else {
 
-      //alert('valid');
+      alert('valid');
       res.json(rows);
     }
   });

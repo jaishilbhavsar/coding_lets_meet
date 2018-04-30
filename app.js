@@ -67,6 +67,8 @@ var infoll = require('./routes/insert_follower_routes');
 var delfoll = require('./routes/delete_follower_routes');
 var comm_past_Event = require('./routes/community_past_event_route');
 var comm_upcoming_event = require('./routes/community_upcoming_events_routes');
+var mypastevent=require('./routes/mypastevents_routes');
+var myupevents=require('./routes/myupcomingevents_routes');
 var app = express();
 
 // view engine setup
@@ -148,6 +150,8 @@ app.use('/insertfollower', infoll);
 app.use('/deletefollower', delfoll);
 app.use('/comm_past_event', comm_past_Event);
 app.use('/comm_upcoming_event', comm_upcoming_event);
+app.use('/mypastevent',mypastevent);
+app.use('/myupcomingevent',myupevents);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
