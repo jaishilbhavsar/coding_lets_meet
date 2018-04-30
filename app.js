@@ -67,11 +67,11 @@ var infoll = require('./routes/insert_follower_routes');
 var delfoll = require('./routes/delete_follower_routes');
 var comm_past_Event = require('./routes/community_past_event_route');
 var comm_upcoming_event = require('./routes/community_upcoming_events_routes');
-var mypastevent=require('./routes/mypastevents_routes');
-var myupevents=require('./routes/myupcomingevents_routes');
-var ecount=require('./routes/all_count_routes');
-var ccount=require('./routes/community_count_routes');
-var ucount=require('./routes/user_count_routes');
+var mypastevent = require('./routes/mypastevents_routes');
+var myupevents = require('./routes/myupcomingevents_routes');
+var ecount = require('./routes/all_count_routes');
+var ccount = require('./routes/community_count_routes');
+var ucount = require('./routes/user_count_routes');
 var app = express();
 
 // view engine setup
@@ -84,13 +84,17 @@ app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: false
+  extended: true
 }));
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", '*');
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+  next();
+});
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-
-
 
 
 app.use('/', index);
@@ -153,11 +157,11 @@ app.use('/insertfollower', infoll);
 app.use('/deletefollower', delfoll);
 app.use('/comm_past_event', comm_past_Event);
 app.use('/comm_upcoming_event', comm_upcoming_event);
-app.use('/mypastevent',mypastevent);
-app.use('/myupcomingevent',myupevents);
-app.use('/ccount',ccount);
-app.use('/ecount',ecount);
-app.use('/ucount',ucount);
+app.use('/mypastevent', mypastevent);
+app.use('/myupcomingevent', myupevents);
+app.use('/ccount', ccount);
+app.use('/ecount', ecount);
+app.use('/ucount', ucount);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
